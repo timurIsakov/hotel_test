@@ -3,16 +3,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
-  const ButtonWidget({Key? key, required this.text}) : super(key: key);
+  final Function() onTap;
+  const ButtonWidget({Key? key, required this.text, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 48.h,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: const Color(0xff0D72FF),
-          borderRadius: BorderRadius.circular(15).r),
+    return ElevatedButton(
+      onPressed: () {
+        onTap.call();
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xff0D72FF),
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15).r,
+        ),
+      ),
       child: Center(
         child: Text(
           text,

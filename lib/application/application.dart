@@ -13,6 +13,9 @@ class Application extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return MaterialApp(
+          theme: ThemeData(
+            scaffoldBackgroundColor: const Color(0xffF6F6F9),
+          ),
           debugShowCheckedModeBanner: false,
           title: 'Hotel Test',
           home: child,
