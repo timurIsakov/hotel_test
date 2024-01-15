@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
-
-import '../features/main/presentation/screens/home_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotel_test/features/main/presentation/screens/home_screen.dart';
 
 class Application extends StatelessWidget {
-  const Application({super.key});
+  const Application({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const HomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Hotel Test',
+          home: child,
+        );
+      },
+      child: const HomeScreen(),
     );
   }
 }
