@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hotel_test/features/main/presentation/screens/home_screen.dart';
+import 'package:hotel_test/features/main/presentation/screens/hotel_screen.dart';
 
 class Application extends StatelessWidget {
   const Application({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class Application extends StatelessWidget {
           home: child,
         );
       },
-      child: const HomeScreen(),
+      child: const HotelScreen(),
     );
   }
 }

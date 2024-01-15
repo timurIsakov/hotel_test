@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^2.0.9
   get_it: ^7.6.6
   flutter_screenutil: ^5.9.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
