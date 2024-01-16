@@ -3,9 +3,11 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hotel_test/features/main/domain/entities/hotel_entity.dart';
+import 'package:hotel_test/features/main/presentation/screens/number_screen.dart';
 import 'package:hotel_test/features/main/presentation/widgets/button_widget.dart';
 
 import '../../../../core/utils/assets.dart';
+import '../widgets/item_wrap_widget.dart';
 
 class HotelScreen extends StatefulWidget {
   const HotelScreen({Key? key}) : super(key: key);
@@ -222,10 +224,17 @@ class _HotelScreenState extends State<HotelScreen> {
                     SizedBox(
                       height: 16.h,
                     ),
-                    Container(
-                      height: 66.h,
-                      width: 295.w,
-                      color: Colors.red,
+                    Wrap(
+                      runSpacing: 8.w,
+                      spacing: 8.w,
+                      children: [
+                        ...List.generate(
+                          entity.aboutTheHotel['peculiarities'].length,
+                          (index) => ItemWrapWidget(
+                            title: entity.aboutTheHotel['peculiarities'][index],
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 12.h,
@@ -429,7 +438,13 @@ class _HotelScreenState extends State<HotelScreen> {
                     .r,
                 child: ButtonWidget(
                   text: "К выбору номера",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NumberScreen(),
+                        ));
+                  },
                 ),
               ),
             ),

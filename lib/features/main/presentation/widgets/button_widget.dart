@@ -9,25 +9,28 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        onTap.call();
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff0D72FF),
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15).r,
+    return SizedBox(
+      height: 48.h,
+      child: ElevatedButton(
+        onPressed: () {
+          onTap.call();
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xff0D72FF),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15).r,
+          ),
         ),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: "SF Pro Display",
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: "SF Pro Display",
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),
