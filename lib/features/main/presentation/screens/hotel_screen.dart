@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hotel_test/features/main/domain/entities/hotel_entity.dart';
 import 'package:hotel_test/features/main/presentation/screens/number_screen.dart';
 import 'package:hotel_test/features/main/presentation/widgets/button_widget.dart';
 
+import '../../../../core/components/image_slideshow.dart';
 import '../../../../core/utils/assets.dart';
 import '../widgets/item_wrap_widget.dart';
 
@@ -18,7 +18,7 @@ class HotelScreen extends StatefulWidget {
 
 class _HotelScreenState extends State<HotelScreen> {
   final entity = const HotelEntity(
-      id: "Steigenberger Makadi",
+      id: "1",
       name: "Лучший пятизвездочный отель в Хургаде, Египет",
       address: "Madinat Makadi, Safaga Road, Makadi Bay, Египет",
       minimalPrice: "134268",
@@ -141,7 +141,7 @@ class _HotelScreenState extends State<HotelScreen> {
                       height: 8.h,
                     ),
                     Text(
-                      entity.id,
+                      entity.name,
                       style: TextStyle(
                         fontFamily: "Sf Pro Display",
                         fontSize: 22.sp,
@@ -181,17 +181,27 @@ class _HotelScreenState extends State<HotelScreen> {
                         SizedBox(
                           width: 8.w,
                         ),
-                        Text(
-                          "за тур с перелётом",
-                          style: TextStyle(
-                            fontFamily: "Sf Pro Display",
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                            color: const Color(0xff828796),
-                            height: 0.h,
-                          ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
+                              "за тур с перелётом",
+                              style: TextStyle(
+                                fontFamily: "Sf Pro Display",
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w400,
+                                color: const Color(0xff828796),
+                                height: 0.h,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 16.h,
                     ),
                   ],
                 ),
@@ -442,7 +452,9 @@ class _HotelScreenState extends State<HotelScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const NumberScreen(),
+                          builder: (context) => NumberScreen(
+                            title: entity.name,
+                          ),
                         ));
                   },
                 ),

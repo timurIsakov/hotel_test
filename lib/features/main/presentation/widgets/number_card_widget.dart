@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hotel_test/core/utils/assets.dart';
 import 'package:hotel_test/features/main/domain/entities/number_entity.dart';
 import 'package:hotel_test/features/main/presentation/widgets/button_widget.dart';
 import 'package:hotel_test/features/main/presentation/widgets/item_wrap_widget.dart';
+
+import '../../../../core/components/image_slideshow.dart';
 
 class NumberCardWidget extends StatelessWidget {
   final NumberEntity numberEntity;

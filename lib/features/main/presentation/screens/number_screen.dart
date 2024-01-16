@@ -5,7 +5,9 @@ import 'package:hotel_test/features/main/presentation/screens/booking_screen.dar
 import 'package:hotel_test/features/main/presentation/widgets/number_card_widget.dart';
 
 class NumberScreen extends StatefulWidget {
-  const NumberScreen({Key? key}) : super(key: key);
+  final String title;
+
+  const NumberScreen({Key? key, required this.title}) : super(key: key);
 
   @override
   State<NumberScreen> createState() => _NumberScreenState();
@@ -31,7 +33,7 @@ class _NumberScreenState extends State<NumberScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Steigenberger Makadi",
+          widget.title,
           style: TextStyle(
             fontFamily: "Sf Pro Display",
             fontSize: 18.sp,
