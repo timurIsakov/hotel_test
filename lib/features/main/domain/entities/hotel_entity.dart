@@ -1,15 +1,16 @@
 import 'package:equatable/equatable.dart';
+import 'package:hotel_test/features/main/domain/entities/about_hotel_entity.dart';
 
 class HotelEntity extends Equatable {
-  final String id;
+  final int id;
   final String name;
   final String address;
-  final String minimalPrice;
+  final int minimalPrice;
   final String priceForIt;
-  final String rating;
+  final int rating;
   final String ratingName;
   final List<String> imageUrls;
-  final Map<String, dynamic> aboutTheHotel;
+  final AboutHotelEntity aboutHotelEntity;
 
   const HotelEntity(
       {required this.id,
@@ -20,7 +21,7 @@ class HotelEntity extends Equatable {
       required this.rating,
       required this.ratingName,
       required this.imageUrls,
-      required this.aboutTheHotel});
+      required this.aboutHotelEntity});
 
   @override
   List<Object?> get props => [
@@ -32,6 +33,6 @@ class HotelEntity extends Equatable {
         rating,
         ratingName,
         imageUrls,
-        aboutTheHotel,
+        aboutHotelEntity,
       ];
 }

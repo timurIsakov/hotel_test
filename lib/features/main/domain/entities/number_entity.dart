@@ -1,28 +1,11 @@
 import 'package:equatable/equatable.dart';
 
+import 'room_entity.dart';
+
 class NumberEntity extends Equatable {
-  final String id;
-  final String name;
-  final String price;
-  final String pricePer;
-  final List<String> features;
-  final List<String> imageUrls;
+  final List<RoomEntity> rooms;
 
-  const NumberEntity(
-      {required this.id,
-      required this.name,
-      required this.price,
-      required this.pricePer,
-      required this.features,
-      required this.imageUrls});
-
+  const NumberEntity({required this.rooms});
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        price,
-        pricePer,
-        features,
-        imageUrls,
-      ];
+  List<Object?> get props => [rooms.length];
 }

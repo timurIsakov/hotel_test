@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hotel_test/core/utils/assets.dart';
-import 'package:hotel_test/features/main/domain/entities/number_entity.dart';
+import 'package:hotel_test/core/utils/number_helper.dart';
+import 'package:hotel_test/features/main/domain/entities/room_entity.dart';
 import 'package:hotel_test/features/main/presentation/widgets/button_widget.dart';
 import 'package:hotel_test/features/main/presentation/widgets/item_wrap_widget.dart';
 
 import '../../../../core/components/image_slideshow.dart';
 
 class NumberCardWidget extends StatelessWidget {
-  final NumberEntity numberEntity;
+  final RoomEntity numberEntity;
   final Function() onTap;
   const NumberCardWidget(
       {Key? key, required this.numberEntity, required this.onTap})
@@ -34,7 +35,7 @@ class NumberCardWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15).r,
               ),
-              child: ImageSlideshow(children: [
+              child: ImageSlideshow(initialPage: 1, children: [
                 ...List.generate(
                     numberEntity.imageUrls.length,
                     (index) => Image.network(
@@ -114,7 +115,7 @@ class NumberCardWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${numberEntity.price} ₽",
+                  "${NumberHelper.formatNumber(numberEntity.price)} ₽",
                   style: TextStyle(
                     fontFamily: "SF Pro Display",
                     fontSize: 30.sp,

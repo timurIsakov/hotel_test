@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 
 class BookingEntity extends Equatable {
-  final String id;
+  final int id;
   final String name;
   final String address;
-  final String rating;
+  final int rating;
   final String ratingName;
   final String departure;
   final String arrivalCountry;
   final String tourDateStart;
   final String tourDateStop;
-  final String numberOfNight;
+  final int numberOfNight;
   final String room;
   final String nutrition;
-  final String tourPrice;
-  final String fuelCharge;
-  final String serviceCharge;
+  final int tourPrice;
+  final int fuelCharge;
+  final int serviceCharge;
 
   const BookingEntity(
       {required this.id,

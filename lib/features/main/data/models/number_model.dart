@@ -1,21 +1,13 @@
+import 'package:hotel_test/features/main/data/models/room_model.dart';
 import 'package:hotel_test/features/main/domain/entities/number_entity.dart';
 
 class NumberModel extends NumberEntity {
-  const NumberModel(
-      {required super.id,
-      required super.name,
-      required super.price,
-      required super.pricePer,
-      required super.features,
-      required super.imageUrls});
+  const NumberModel({required super.rooms});
 
-  // factory NumberModel.fromJson({required Map<String,dynamic> json}){
-  //   return NumberModel(
-  //       id:
-  //       name: name,
-  //       price: price,
-  //       pricePer: pricePer,
-  //       features: features,
-  //       imageUrls: imageUrls)
-  // }
+  factory NumberModel.fromJson(Map<String, dynamic> json) {
+    return NumberModel(
+        rooms: List.from(json['rooms'])
+            .map((e) => RoomModel.fromJson(json: e))
+            .toList());
+  }
 }

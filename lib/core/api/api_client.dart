@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-import 'api_constants.dart';
 import 'api_exceptions.dart';
 
 class ApiClient {
@@ -10,18 +9,18 @@ class ApiClient {
 
   ApiClient(this.client);
 
-  Future get(String path, Map<String, dynamic> params) async {
-    final Map<String, String> header = {};
-
-    final response =
-        await client.get(getPath(path, params: params), headers: header);
+  Future get(String path) async {
+    final response = await client.get(getPath(
+      path,
+    ));
 
     return _errorHandler(response);
   }
 
   _errorHandler(Response response) {
     if (response.statusCode == 200) {
-      return json.decode(utf8.decode(response.bodyBytes));
+      // print("reponse body ${response.body}");
+      return json.decode(response.body);
     } else if (response.statusCode == 400 || response.statusCode == 404) {
       String msg = "unknown_error";
       var resp = jsonDecode(utf8.decode(response.bodyBytes));
@@ -55,6 +54,6 @@ class ApiClient {
       });
     }
 
-    return Uri.parse('${ApiConstants.tBaseUrl}$path$paramsString');
+    return Uri.parse('$path$paramsString');
   }
 }
