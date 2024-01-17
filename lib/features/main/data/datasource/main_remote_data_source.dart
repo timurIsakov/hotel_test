@@ -13,7 +13,7 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
   MainRemoteDataSourceImpl(this.client);
   @override
   Future<HotelModel> getHotel() async {
-    final response = await client.get(ApiConstants.tBaseUrl, {});
+    final response = await client.get(ApiConstants.hotel, {});
     final model = HotelModel.fromJson(json: response);
     return model;
   }

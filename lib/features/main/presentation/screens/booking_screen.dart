@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotel_test/core/utils/form_validator.dart';
+import 'package:hotel_test/core/utils/number_helper.dart';
 import 'package:hotel_test/features/main/domain/entities/booking_entity.dart';
 import 'package:hotel_test/features/main/presentation/screens/success_paid_screen.dart';
 import 'package:hotel_test/features/main/presentation/widgets/input_widget.dart';
-import 'package:intl/intl.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:simple_accordion/simple_accordion.dart';
 
 import '../widgets/button_widget.dart';
+
+final Map<int, String> cards = {
+  0: "Первый турист",
+  1: "Второй турист",
+  2: "Третий турист",
+  3: "Четвертый турист",
+  4: "Пятый турист",
+  5: "Шестой турист",
+  6: "Седьмой турист",
+  7: "Восьмой турист",
+  8: "Девятый турист",
+  9: "Десятый турист",
+};
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);
@@ -29,6 +42,8 @@ class _BookingScreenState extends State<BookingScreen> {
   late TextEditingController controllerDatePassport;
   late GlobalKey<FormState> formKey;
 
+  int touristsCount = 1;
+
   @override
   void initState() {
     controllerPhone = TextEditingController();
@@ -40,6 +55,7 @@ class _BookingScreenState extends State<BookingScreen> {
     controllerNumberPassport = TextEditingController();
     controllerDatePassport = TextEditingController();
     formKey = GlobalKey<FormState>();
+    controllerPhone.text = "+7";
     super.initState();
   }
 
@@ -57,24 +73,25 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 
   final entity = const BookingEntity(
-      id: '1',
-      name: 'Лучший пятизвездочный отель в Хургаде, Египет',
-      address: 'Madinat Makadi, Safaga Road, Makadi Bay, Египет',
-      rating: '5',
-      ratingName: 'Превосходно',
-      departure: 'Москва',
-      arrivalCountry: 'Египет, Хургада',
-      tourDateStart: '19.09.2023',
-      tourDateStop: '27.09.2023',
-      numberOfNight: '7',
-      room: 'Люкс номер с видом на море',
-      nutrition: 'Все включено',
-      tourPrice: '289400',
-      fuelCharge: '9300',
-      serviceCharge: '2150');
+    id: '1',
+    name: 'Лучший пятизвездочный отель в Хургаде, Египет',
+    address: 'Madinat Makadi, Safaga Road, Makadi Bay, Египет',
+    rating: '5',
+    ratingName: 'Превосходно',
+    departure: 'Москва',
+    arrivalCountry: 'Египет, Хургада',
+    tourDateStart: '19.09.2023',
+    tourDateStop: '27.09.2023',
+    numberOfNight: '7',
+    room: 'Люкс номер с видом на море',
+    nutrition: 'Все включено',
+    tourPrice: '289400',
+    fuelCharge: '9300',
+    serviceCharge: '2150',
+  );
 
   var maskFormatter = MaskTextInputFormatter(
-      mask: '+# (###) ###-##-##',
+      mask: '+7 (###) ###-##-##',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
@@ -191,190 +208,22 @@ class _BookingScreenState extends State<BookingScreen> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16).r,
-                    child: Row(
+                    child: Column(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Вылет из",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "Страна, город",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "Даты",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "Кол-во ночей",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "Отель",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "Номер",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "Питание",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              entity.departure,
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              entity.arrivalCountry,
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              "${entity.tourDateStart} - ${entity.tourDateStop}",
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              entity.numberOfNight,
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            SizedBox(
-                              width: 203.w,
-                              child: Text(
-                                entity.name,
-                                style: TextStyle(
-                                  fontFamily: "Sf Pro Display",
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              entity.room,
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Text(
-                              entity.nutrition,
-                              style: TextStyle(
-                                fontFamily: "Sf Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                          ],
-                        ),
+                        _item("Вылет из", entity.departure),
+                        SizedBox(height: 16.h),
+                        _item("Страна, Город", entity.arrivalCountry),
+                        SizedBox(height: 16.h),
+                        _item("Даты",
+                            "${entity.tourDateStart} - ${entity.tourDateStop}"),
+                        SizedBox(height: 16.h),
+                        _item("Кол-во ночей", "${entity.numberOfNight} ночей"),
+                        SizedBox(height: 16.h),
+                        _item("Отель", entity.name),
+                        SizedBox(height: 16.h),
+                        _item("Номер", entity.room),
+                        SizedBox(height: 16.h),
+                        _item("Питание", entity.nutrition),
                       ],
                     ),
                   ),
@@ -446,19 +295,22 @@ class _BookingScreenState extends State<BookingScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15).r,
+                    borderRadius: BorderRadius.circular(12).r,
                     color: Colors.white,
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 16)
-                            .r,
-                    child: Column(
-                      children: [
-                        SimpleAccordion(
+                        const EdgeInsets.only(left: 16, right: 16, top: 16).r,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: touristsCount,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final title = cards[index];
+                        return SimpleAccordion(
                           children: [
                             AccordionHeaderItem(
-                              title: "Первый турист ",
+                              title: title,
                               headerTextStyle: TextStyle(
                                 color: Colors.black,
                                 fontFamily: "SF Pro Display",
@@ -559,8 +411,8 @@ class _BookingScreenState extends State<BookingScreen> {
                               ],
                             ),
                           ],
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -590,22 +442,30 @@ class _BookingScreenState extends State<BookingScreen> {
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          height: 32.h,
-                          width: 32.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6).r,
-                            color: const Color(0xff0D72FF),
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              color: Colors.white,
-                              padding: const EdgeInsets.all(0).r,
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.add,
-                                size: 24,
-                                color: Colors.white,
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: touristsCount == 10
+                                ? null
+                                : () {
+                                    if (touristsCount < 10) {
+                                      touristsCount++;
+                                      setState(() {});
+                                    }
+                                  },
+                            child: Ink(
+                              height: 32.h,
+                              width: 32.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6).r,
+                                color: const Color(0xff0D72FF),
+                              ),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.add,
+                                  size: 24,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -627,115 +487,26 @@ class _BookingScreenState extends State<BookingScreen> {
                     padding: const EdgeInsets.all(16).r,
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Тур",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              "${_formatPrice(price: entity.tourPrice)} ₽",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                          ],
-                        ),
+                        _itemPrice("Тур", entity.tourPrice),
                         SizedBox(
                           height: 16.h,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "Топливный сбор",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              "${_formatPrice(price: entity.fuelCharge)} ₽",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                          ],
-                        ),
+                        _itemPrice("Топливный сбор", entity.fuelCharge),
                         SizedBox(
                           height: 16.h,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "Сервисный сбор",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              "${_formatPrice(price: entity.serviceCharge)} ₽",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                          ],
-                        ),
+                        _itemPrice("Сервисный сбор", entity.serviceCharge),
                         SizedBox(
                           height: 16.h,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "К оплате",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff828796),
-                                height: 0.h,
-                              ),
-                            ),
-                            const Spacer(),
-                            Text(
-                              "${_countPrice(tourPrice: entity.tourPrice, fuelCharge: entity.fuelCharge, serviceCharge: entity.serviceCharge)} ₽",
-                              style: TextStyle(
-                                fontFamily: "SF Pro Display",
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
-                                color: const Color(0xff0D72FF),
-                                height: 0.h,
-                              ),
-                            ),
-                          ],
-                        ),
+                        _itemPrice(
+                            "К оплате",
+                            colorValue: const Color(0xff0D72FF),
+                            _countPrice(
+                                tourPrice: entity.tourPrice,
+                                fuelCharge: entity.fuelCharge,
+                                serviceCharge: entity.serviceCharge),
+                            withFormat: false),
                       ],
                     ),
                   ),
@@ -779,18 +550,75 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 }
 
-String _countPrice(
-    {dynamic tourPrice = 0,
-    dynamic fuelCharge = 0,
-    dynamic serviceCharge = 0}) {
-  final tourInt = int.tryParse(tourPrice) ?? 0;
-  final fuelInt = int.tryParse(fuelCharge) ?? 0;
-  final serviceInt = int.tryParse(serviceCharge) ?? 0;
-  final result = tourInt + fuelInt + serviceInt;
-  return NumberFormat.decimalPattern('ru_RU').format(result);
+Widget _item(String title, String value) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        title,
+        style: TextStyle(
+          fontFamily: "SF Pro Display",
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xff828796),
+        ),
+      ),
+      const Spacer(),
+      SizedBox(
+        width: 203.w,
+        child: Text(
+          value,
+          style: TextStyle(
+            fontFamily: "SF Pro Display",
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    ],
+  );
 }
 
-String _formatPrice({dynamic price = "0"}) {
-  final priceDouble = double.tryParse(price);
-  return NumberFormat.decimalPattern('ru_RU').format(priceDouble);
+Widget _itemPrice(String title, String value,
+    {bool withFormat = true, Color? colorValue}) {
+  return Row(
+    children: [
+      Text(
+        title,
+        style: TextStyle(
+          fontFamily: "SF Pro Display",
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xff828796),
+          height: 0.h,
+        ),
+      ),
+      const Spacer(),
+      Text(
+        withFormat
+            ? "${NumberHelper.formatNumber(int.parse(value))} ₽"
+            : "$value ₽",
+        style: TextStyle(
+          fontFamily: "SF Pro Display",
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: colorValue ?? Colors.black,
+          height: 0.h,
+        ),
+      ),
+    ],
+  );
+}
+
+String _countPrice(
+    {required String tourPrice,
+    required String fuelCharge,
+    required String serviceCharge}) {
+  final tourInt = int.parse(tourPrice);
+  final fuelInt = int.parse(fuelCharge);
+  final serviceInt = int.parse(serviceCharge);
+  final int result = tourInt + fuelInt + serviceInt;
+
+  return NumberHelper.formatNumber(result);
 }
