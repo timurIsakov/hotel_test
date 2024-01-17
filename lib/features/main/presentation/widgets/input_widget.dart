@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputWidget extends StatelessWidget {
   final String title;
-  const InputWidget({Key? key, required this.title}) : super(key: key);
+  final String? Function(String?)? validator;
+  final Function(String?) onSubmit;
+  final TextEditingController controller;
+  final TextInputFormatter? textInputFormatter;
+  const InputWidget(
+      {Key? key,
+      required this.title,
+      this.validator,
+      required this.onSubmit,
+      required this.controller,
+      this.textInputFormatter})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +25,14 @@ class InputWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10).r,
       ),
       child: TextFormField(
+        inputFormatters: textInputFormatter != null
+            ? [
+                textInputFormatter!,
+              ]
+            : null,
+        onFieldSubmitted: (value) => onSubmit.call(value),
+        controller: controller,
+        validator: validator,
         cursorColor: Colors.black,
         decoration: InputDecoration(
             contentPadding:
