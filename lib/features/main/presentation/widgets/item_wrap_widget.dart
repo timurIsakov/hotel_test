@@ -20,7 +20,7 @@ class ItemWrapWidget extends StatelessWidget {
             color: const Color(0xff828796),
             fontWeight: FontWeight.w500,
             fontSize: 16.sp,
-            fontFamily: "Sf Pro Display",
+            fontFamily: "SF Pro Display",
             height: 0,
           ),
         ),

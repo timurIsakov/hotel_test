@@ -49,7 +49,7 @@ class NumberCardWidget extends StatelessWidget {
             Text(
               numberEntity.name,
               style: TextStyle(
-                fontFamily: "Sf Pro Display",
+                fontFamily: "SF Pro Display",
                 fontWeight: FontWeight.w500,
                 fontSize: 22.sp,
                 color: Colors.black,
@@ -88,7 +88,7 @@ class NumberCardWidget extends StatelessWidget {
                     Text(
                       "Подробнее о номере",
                       style: TextStyle(
-                        fontFamily: "Sf Pro Display",
+                        fontFamily: "SF Pro Display",
                         fontWeight: FontWeight.w500,
                         fontSize: 16.sp,
                         color: const Color(0xff0D72FF),
@@ -116,7 +116,7 @@ class NumberCardWidget extends StatelessWidget {
                 Text(
                   "${numberEntity.price} ₽",
                   style: TextStyle(
-                    fontFamily: "Sf Pro Display",
+                    fontFamily: "SF Pro Display",
                     fontSize: 30.sp,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
@@ -134,7 +134,7 @@ class NumberCardWidget extends StatelessWidget {
                     Text(
                       numberEntity.pricePer,
                       style: TextStyle(
-                        fontFamily: "Sf Pro Display",
+                        fontFamily: "SF Pro Display",
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
                         color: const Color(0xff828796),

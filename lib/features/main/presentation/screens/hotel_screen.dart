@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hotel_test/features/main/domain/entities/hotel_entity.dart';
 import 'package:hotel_test/features/main/presentation/screens/number_screen.dart';
 import 'package:hotel_test/features/main/presentation/widgets/button_widget.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/components/image_slideshow.dart';
 import '../../../../core/utils/assets.dart';
@@ -129,7 +130,7 @@ class _HotelScreenState extends State<HotelScreen> {
                               style: TextStyle(
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
-                                fontFamily: "Sf Pro Display",
+                                fontFamily: "SF Pro Display",
                                 color: const Color(0xffFFA800),
                               ),
                             ),
@@ -143,7 +144,7 @@ class _HotelScreenState extends State<HotelScreen> {
                     Text(
                       entity.name,
                       style: TextStyle(
-                        fontFamily: "Sf Pro Display",
+                        fontFamily: "SF Pro Display",
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
@@ -156,7 +157,7 @@ class _HotelScreenState extends State<HotelScreen> {
                     Text(
                       entity.address,
                       style: TextStyle(
-                        fontFamily: "Sf Pro Display",
+                        fontFamily: "SF Pro Display",
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                         color: const Color(0xff0D72FF),
@@ -169,9 +170,9 @@ class _HotelScreenState extends State<HotelScreen> {
                     Row(
                       children: [
                         Text(
-                          "от ${entity.minimalPrice} ₽",
+                          "от ${_formatPrice(price: entity.minimalPrice)} ₽",
                           style: TextStyle(
-                            fontFamily: "Sf Pro Display",
+                            fontFamily: "SF Pro Display",
                             fontSize: 30.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.black,
@@ -189,7 +190,7 @@ class _HotelScreenState extends State<HotelScreen> {
                             Text(
                               "за тур с перелётом",
                               style: TextStyle(
-                                fontFamily: "Sf Pro Display",
+                                fontFamily: "SF Pro Display",
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w400,
                                 color: const Color(0xff828796),
@@ -224,7 +225,7 @@ class _HotelScreenState extends State<HotelScreen> {
                     Text(
                       "Об отеле",
                       style: TextStyle(
-                        fontFamily: "Sf Pro Display",
+                        fontFamily: "SF Pro Display",
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
@@ -252,11 +253,12 @@ class _HotelScreenState extends State<HotelScreen> {
                     Text(
                       entity.aboutTheHotel['description'],
                       style: TextStyle(
-                          fontFamily: "Sf Pro Display",
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          height: 0.h),
+                        fontFamily: "SF Pro Display",
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        height: 0.h,
+                      ),
                     ),
                     SizedBox(
                       height: 16.h,
@@ -289,7 +291,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       "Удобства",
                                       style: TextStyle(
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.black,
@@ -298,7 +300,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       "Самое необходимое",
                                       style: TextStyle(
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.w500,
                                           color: const Color(0xff828796),
@@ -343,7 +345,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       "Что включено",
                                       style: TextStyle(
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.black,
@@ -352,7 +354,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       "Самое необходимое",
                                       style: TextStyle(
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.w500,
                                           color: const Color(0xff828796),
@@ -397,7 +399,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       "Что не включено",
                                       style: TextStyle(
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.black,
@@ -406,7 +408,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     Text(
                                       "Самое необходимое",
                                       style: TextStyle(
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.w500,
                                           color: const Color(0xff828796),
@@ -465,4 +467,9 @@ class _HotelScreenState extends State<HotelScreen> {
       ),
     );
   }
+}
+
+String _formatPrice({required dynamic price}) {
+  final priceDouble = double.tryParse(price);
+  return NumberFormat.decimalPattern('ru_RU').format(priceDouble);
 }

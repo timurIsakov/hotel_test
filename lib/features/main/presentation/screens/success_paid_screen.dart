@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotel_test/core/utils/assets.dart';
@@ -25,9 +27,10 @@ class _SuccessPaidScreenState extends State<SuccessPaidScreen> {
             color: Colors.black,
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
-            fontFamily: "Sf Pro Display",
+            fontFamily: "SF Pro Display",
           ),
         ),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +63,7 @@ class _SuccessPaidScreenState extends State<SuccessPaidScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 23).r,
             child: Text(
-              "Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.",
+              "Подтверждение заказа №${_getRandomNumber()} может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: "SF Pro Display",
@@ -98,4 +101,10 @@ class _SuccessPaidScreenState extends State<SuccessPaidScreen> {
       ),
     );
   }
+}
+
+String _getRandomNumber() {
+  final random = Random();
+  final num = random.nextInt(900000) + 100000;
+  return num.toString();
 }
