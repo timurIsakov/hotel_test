@@ -1,3 +1,4 @@
+import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,6 @@ import 'package:hotel_test/features/main/presentation/screens/success_paid_scree
 import 'package:hotel_test/features/main/presentation/widgets/input_widget.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:simple_accordion/simple_accordion.dart';
 
 import '../widgets/button_widget.dart';
 
@@ -18,11 +18,6 @@ final Map<int, String> cards = {
   2: "Третий турист",
   3: "Четвертый турист",
   4: "Пятый турист",
-  5: "Шестой турист",
-  6: "Седьмой турист",
-  7: "Восьмой турист",
-  8: "Девятый турист",
-  9: "Десятый турист",
 };
 
 class BookingScreen extends StatefulWidget {
@@ -76,6 +71,11 @@ class _BookingScreenState extends State<BookingScreen> {
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '+7 (###) ###-##-##',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
+
+  var maskFormatterDate = MaskTextInputFormatter(
+      mask: '##-##-####',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
@@ -150,7 +150,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                         style: TextStyle(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
-                                          fontFamily: "Sf Pro Display",
+                                          fontFamily: "SF Pro Display",
                                           color: const Color(0xffFFA800),
                                         ),
                                       ),
@@ -164,7 +164,7 @@ class _BookingScreenState extends State<BookingScreen> {
                               Text(
                                 state.bookingEntity.name,
                                 style: TextStyle(
-                                  fontFamily: "Sf Pro Display",
+                                  fontFamily: "SF Pro Display",
                                   fontSize: 22.sp,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black,
@@ -177,7 +177,7 @@ class _BookingScreenState extends State<BookingScreen> {
                               Text(
                                 state.bookingEntity.address,
                                 style: TextStyle(
-                                  fontFamily: "Sf Pro Display",
+                                  fontFamily: "SF Pro Display",
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                   color: const Color(0xff0D72FF),
@@ -241,7 +241,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   color: Colors.black,
                                   fontSize: 22.sp,
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: "Sf Pro Display",
+                                  fontFamily: "SF Pro Display",
                                 ),
                               ),
                               SizedBox(
@@ -274,7 +274,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   color: const Color(0xff828796),
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400,
-                                  fontFamily: "Sf Pro Display",
+                                  fontFamily: "SF Pro Display",
                                   height: 0.h,
                                 ),
                               ),
@@ -282,142 +282,131 @@ class _BookingScreenState extends State<BookingScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12).r,
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                                  left: 16, right: 16, top: 16)
-                              .r,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: touristsCount,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              final title = cards[index];
-                              return SimpleAccordion(
-                                children: [
-                                  AccordionHeaderItem(
-                                    title: title,
-                                    headerTextStyle: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "SF Pro Display",
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 22.sp,
-                                    ),
-                                    children: [
-                                      AccordionItem(
-                                        child: SizedBox(
-                                          height: 17.h,
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: InputWidget(
-                                          title: "Имя",
-                                          controller: controllerName,
-                                          onSubmit: (String? value) {},
-                                          validator: (value) {
-                                            return FormValidator.empty(
-                                                value, "");
-                                          },
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: SizedBox(
-                                          height: 8.h,
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: InputWidget(
-                                          title: "Фамилия",
-                                          controller: controllerSurname,
-                                          onSubmit: (String? value) {},
-                                          validator: (value) {
-                                            return FormValidator.empty(
-                                                value, "");
-                                          },
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: SizedBox(
-                                          height: 8.h,
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: InputWidget(
-                                          title: "Дата рождения",
-                                          controller: controllerBirthday,
-                                          onSubmit: (String? value) {},
-                                          validator: (value) {
-                                            return FormValidator.empty(
-                                                value, "");
-                                          },
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: SizedBox(
-                                          height: 8.h,
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: InputWidget(
-                                          title: "Гражданство",
-                                          controller: controllerCountry,
-                                          onSubmit: (String? value) {},
-                                          validator: (value) {
-                                            return FormValidator.empty(
-                                                value, "");
-                                          },
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: SizedBox(
-                                          height: 8.h,
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: InputWidget(
-                                          title: "Номер загранпаспорта",
-                                          controller: controllerNumberPassport,
-                                          onSubmit: (String? value) {},
-                                          validator: (value) {
-                                            return FormValidator.empty(
-                                                value, "");
-                                          },
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: SizedBox(
-                                          height: 8.h,
-                                        ),
-                                      ),
-                                      AccordionItem(
-                                        child: InputWidget(
-                                          title: "Срок действия загранпаспорта",
-                                          controller: controllerDatePassport,
-                                          onSubmit: (String? value) {},
-                                          validator: (value) {
-                                            return FormValidator.empty(
-                                                value, "");
-                                          },
-                                        ),
-                                      ),
-                                    ],
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: touristsCount,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final title = cards[index];
+                          return Accordion(
+                            disableScrolling: true,
+                            paddingListTop: 8,
+                            paddingListBottom: 0,
+                            paddingListHorizontal: 0,
+                            headerBackgroundColor: Colors.white,
+                            rightIcon: Container(
+                              height: 32.h,
+                              width: 32.w,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6).r,
+                                  color: Colors.blue.withOpacity(0.1)),
+                              child: const Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Color(0xff0D72FF),
+                              ),
+                            ),
+                            children: [
+                              AccordionSection(
+                                header: Text(
+                                  title!,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: "SF Pro Display",
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22.sp,
                                   ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8.h,
+                                ),
+                                headerPadding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 17),
+                                contentBackgroundColor: Colors.white,
+                                contentBorderColor: Colors.white,
+                                contentBorderWidth: 0,
+                                contentHorizontalPadding: 16.w,
+                                contentVerticalPadding: 0,
+                                paddingBetweenClosedSections: 0,
+                                paddingBetweenOpenSections: 0,
+                                content: Column(
+                                  children: [
+                                    InputWidget(
+                                      title: "Имя",
+                                      onSubmit: (value) {},
+                                      controller: controllerName,
+                                      validator: (p0) {
+                                        return FormValidator.empty(
+                                            p0, "Заполните поле");
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    InputWidget(
+                                      title: "Фамилия",
+                                      onSubmit: (value) {},
+                                      controller: controllerSurname,
+                                      validator: (p0) {
+                                        return FormValidator.empty(
+                                            p0, "Заполните поле");
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    InputWidget(
+                                      title: "Дата рождения",
+                                      onSubmit: (value) {},
+                                      controller: controllerBirthday,
+                                      textInputFormatter: maskFormatterDate,
+                                      validator: (p0) {
+                                        return FormValidator.empty(
+                                            p0, "Заполните поле");
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    InputWidget(
+                                      title: "Гражданство",
+                                      onSubmit: (value) {},
+                                      controller: controllerCountry,
+                                      validator: (p0) {
+                                        return FormValidator.empty(
+                                            p0, "Заполните поле");
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    InputWidget(
+                                      title: "Номер загранпаспорта",
+                                      onSubmit: (value) {},
+                                      controller: controllerNumberPassport,
+                                      validator: (p0) {
+                                        return FormValidator.empty(
+                                            p0, "Заполните поле");
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    InputWidget(
+                                      title: "Срок действия загранпаспорта",
+                                      onSubmit: (value) {},
+                                      controller: controllerDatePassport,
+                                      validator: (p0) {
+                                        return FormValidator.empty(
+                                            p0, "Заполните поле");
+                                      },
+                                      textInputFormatter: maskFormatterDate,
+                                    ),
+                                    SizedBox(
+                                      height: 16.h,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
@@ -540,11 +529,20 @@ class _BookingScreenState extends State<BookingScreen> {
                             onTap: () {
                               if (formKey.currentState!.validate()) {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SuccessPaidScreen(),
-                                    ));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SuccessPaidScreen(),
+                                  ),
+                                );
+                                controllerDatePassport.text = '';
+                                controllerEmail.text = '';
+                                controllerPhone.text = '';
+                                controllerName.text = '';
+                                controllerBirthday.text = '';
+                                controllerSurname.text = '';
+                                controllerCountry.text = '';
+                                controllerNumberPassport.text = '';
                               }
                             },
                           ),

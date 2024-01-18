@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:hotel_test/core/api/api_client.dart';
 import 'package:hotel_test/features/main/data/models/hotel_model.dart';
 import 'package:hotel_test/features/main/data/models/number_model.dart';
@@ -21,7 +19,6 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
   @override
   Future<HotelModel> getHotel() async {
     final response = await client.get(ApiConstants.hotel);
-
     final model = HotelModel.fromJson(json: response);
 
     return model;
@@ -29,21 +26,16 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
 
   @override
   Future<NumberModel> getRooms() async {
-    log("getRooms  data souce");
     final response = await client.get(ApiConstants.rooms);
-    log(response.toString());
     final model = NumberModel.fromJson(response);
-    log("model ${model.toString()}");
 
     return model;
   }
 
   @override
   Future<BookingModel> getBooking() async {
-    log("getRooms  data souce");
     final response = await client.get(ApiConstants.booking);
     final model = BookingModel.fromJson(json: response);
-    log("model ${model.toString()}");
 
     return model;
   }
