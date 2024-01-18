@@ -9,6 +9,7 @@ import 'package:hotel_test/features/main/presentation/widgets/button_widget.dart
 import '../../../../core/components/image_slideshow.dart';
 import '../../../../core/utils/assets.dart';
 import '../widgets/item_wrap_widget.dart';
+import '../widgets/loading_widget.dart';
 
 class HotelScreen extends StatefulWidget {
   const HotelScreen({Key? key}) : super(key: key);
@@ -30,9 +31,7 @@ class _HotelScreenState extends State<HotelScreen> {
       body: BlocBuilder<HotelCubit, HotelState>(
         builder: (context, state) {
           if (state is HotelLoading) {
-            return const Center(
-              child: RefreshProgressIndicator(),
-            );
+            return const LoadingWidget();
           }
           if (state is HotelLoaded) {
             return SingleChildScrollView(
@@ -91,7 +90,6 @@ class _HotelScreenState extends State<HotelScreen> {
                             height: 16.h,
                           ),
                           Container(
-                            width: 149.w,
                             decoration: BoxDecoration(
                                 color: const Color(0xffFFC700).withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(5).r),
@@ -100,6 +98,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                       horizontal: 10, vertical: 5)
                                   .r,
                               child: Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   SizedBox(
                                     height: 15.h,
@@ -181,7 +180,7 @@ class _HotelScreenState extends State<HotelScreen> {
                                     "за тур с перелётом",
                                     style: TextStyle(
                                       fontFamily: "SF Pro Display",
-                                      fontSize: 16.sp,
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.w400,
                                       color: const Color(0xff828796),
                                       height: 0.h,

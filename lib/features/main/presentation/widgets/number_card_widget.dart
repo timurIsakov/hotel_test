@@ -75,7 +75,6 @@ class NumberCardWidget extends StatelessWidget {
               height: 8.h,
             ),
             Container(
-              width: 192.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5).r,
                 color: const Color(0xff0D72FF).withOpacity(0.1),
@@ -85,6 +84,7 @@ class NumberCardWidget extends StatelessWidget {
                     const EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 2)
                         .r,
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       "Подробнее о номере",
@@ -136,7 +136,7 @@ class NumberCardWidget extends StatelessWidget {
                       numberEntity.pricePer,
                       style: TextStyle(
                         fontFamily: "SF Pro Display",
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                         color: const Color(0xff828796),
                         height: 0.h,

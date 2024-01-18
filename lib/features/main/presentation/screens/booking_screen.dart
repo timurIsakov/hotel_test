@@ -7,6 +7,7 @@ import 'package:hotel_test/core/utils/number_helper.dart';
 import 'package:hotel_test/features/main/presentation/cubit/booking/booking_cubit.dart';
 import 'package:hotel_test/features/main/presentation/screens/success_paid_screen.dart';
 import 'package:hotel_test/features/main/presentation/widgets/input_widget.dart';
+import 'package:hotel_test/features/main/presentation/widgets/loading_widget.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -97,7 +98,7 @@ class _BookingScreenState extends State<BookingScreen> {
         body: BlocBuilder<BookingCubit, BookingState>(
           builder: (context, state) {
             if (state is BookingLoading) {
-              return const Center(child: RefreshProgressIndicator());
+              return const LoadingWidget();
             }
             if (state is BookingLoaded) {
               return Form(
@@ -120,7 +121,6 @@ class _BookingScreenState extends State<BookingScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: 149.w,
                                 decoration: BoxDecoration(
                                     color: const Color(0xffFFC700)
                                         .withOpacity(0.2),
@@ -130,6 +130,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                           horizontal: 10, vertical: 5)
                                       .r,
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       SizedBox(
                                         height: 15.h,

@@ -6,4 +6,6 @@ class Assets {
   static const String tArrowRightIcon = "assets/icons/arrow_right_icon.svg";
   //png
   static const String tSuccessImage = "assets/images/success_image.png";
+  //lottie
+  static const String tLoading = "assets/lottie/download.json";
 }

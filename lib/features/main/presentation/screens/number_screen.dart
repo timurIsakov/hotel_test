@@ -5,6 +5,8 @@ import 'package:hotel_test/features/main/presentation/cubit/rooms/rooms_cubit.da
 import 'package:hotel_test/features/main/presentation/screens/booking_screen.dart';
 import 'package:hotel_test/features/main/presentation/widgets/number_card_widget.dart';
 
+import '../widgets/loading_widget.dart';
+
 class NumberScreen extends StatefulWidget {
   final String title;
 
@@ -38,9 +40,7 @@ class _NumberScreenState extends State<NumberScreen> {
       body: BlocBuilder<RoomsCubit, RoomsState>(
         builder: (context, state) {
           if (state is RoomsLoading) {
-            return const Center(
-              child: RefreshProgressIndicator(),
-            );
+            return const LoadingWidget();
           }
           if (state is RoomsLoaded) {
             return SafeArea(
